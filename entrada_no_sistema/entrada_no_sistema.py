@@ -2,10 +2,12 @@ from entrada_no_sistema.verificar_credenciais import verificar_login
 
 def login_no_sistema():
    
+   #só fica nesse laço caso o email ou senha esteja errado
     while(1):
         e_mail = input("Digite seu E-mail: ")
         senha = input("Digite sua Senha: ")
 
+        #verifica se o login está certo
         if verificar_login(e_mail,senha):
             print("\nBem Vindo de Volta\n")
             return 0
@@ -13,7 +15,7 @@ def login_no_sistema():
             print("\nE-Mail ou Senha errado\nDigite Novamente\n")
             
     
-
+#ainda não terminei 
 def criar_conta():
 
     nome = input("Digite seu nome: ")
@@ -24,6 +26,7 @@ def criar_conta():
     credenciais = {nome, data_de_nascimento, e_mail, senha}
     return credenciais
 
+#opções que podem ser escolhidas de inicio
 opcoes = {
     1: login_no_sistema,
     2: criar_conta
