@@ -1,0 +1,14 @@
+{
+    "nome":"Benesley",
+    "idade": 20,
+    "data_de_nascimento": "05/04/2003",
+    "e_mail": "benesleyartista@gmail.com",
+    "senha": "a23f4ifroosf3",
+    "tipo_de_conta": "artista",
+    "total_de_musicas": 3,
+    "musicas":[
+        "Vex",
+        "NGHTMRE",
+        "StillAlive"
+    ]
+}
