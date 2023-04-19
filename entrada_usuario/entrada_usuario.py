@@ -1,4 +1,4 @@
-from entrada_no_sistema.verificar_credenciais import verificar_login
+from .verificar_credenciais import verificar_login
 
 def login_no_sistema():
    
