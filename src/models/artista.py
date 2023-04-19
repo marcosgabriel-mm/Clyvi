@@ -1,5 +1,4 @@
-from usuario import Usuario
-
+from .usuario import Usuario
 class Artista(Usuario):
 
     def __init__(self, nome, data_de_nascimento, idade, e_mail, senha, quantidade_de_musicas) -> None:
