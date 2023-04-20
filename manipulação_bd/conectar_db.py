@@ -11,6 +11,7 @@ class Banco:
             server_api=ServerApi("1"),
         )
 
+    #Essa função nao tá pronta, ela vai apenas procurar e o usuário existe
     def usuarios(self):
         banco_de_dados = self.cliente["ClyviDB"]
         colecao = banco_de_dados["usuarios"]
