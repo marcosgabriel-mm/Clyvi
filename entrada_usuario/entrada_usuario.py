@@ -1,5 +1,6 @@
 from .verificar_credenciais import verificar_login
 
+from manipulação_bd.conectar_db import Banco
 def login_no_sistema():
    
    #só fica nesse laço caso o email ou senha esteja errado
@@ -24,6 +25,9 @@ def criar_conta():
     senha = input("Digite sua Senha: ") #Colocar Minimos de Caracteres
 
     credenciais = {nome, data_de_nascimento, e_mail, senha}
+    banco = Banco()
+    banco.testar_conn()
+    print(banco.usuarios())
     return credenciais
 
 #opções que podem ser escolhidas de inicio
