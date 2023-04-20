@@ -29,14 +29,10 @@ def criar_conta():
         "e-mail": e_mail,
         "senha": senha,
     }
-    print(credenciais)
 
     banco = Banco()
 
-    print(banco.usuarios())
-    banco.testar_conn()
-    #    banco.inserir_usuarios(credenciais)
-    print(list(banco.usuarios()))
+    banco.inserir_usuarios(credenciais)
     return credenciais
 
 
