@@ -7,7 +7,7 @@ class Banco:
     def __init__(self):
         self.cliente = MongoClient("mongodb+srv://marcosgabriel:mgmm4103@cluster0.7mnfxzs.mongodb.net/?retryWrites=true&w=majority", server_api=ServerApi('1'))
     def usuarios(self):
-        banco_de_dados = self.clientecliente['ClyviDB']
+        banco_de_dados = self.cliente['ClyviDB']
         colecao = banco_de_dados['usuarios']
         return colecao
     def testar_conn(self):
