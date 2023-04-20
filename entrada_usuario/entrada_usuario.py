@@ -24,6 +24,8 @@ def criar_conta():
     senha = input("Digite sua Senha: ") #Colocar Minimos de Caracteres
 
     credenciais = {nome, data_de_nascimento, e_mail, senha}
+    banco = Banco
+    banco.testar_conn()
     return credenciais
 
 #opções que podem ser escolhidas de inicio
