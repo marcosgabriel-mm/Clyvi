@@ -1,7 +1,6 @@
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 
-uri = "mongodb+srv://marcosgabriel:mgmm4103@cluster0.7mnfxzs.mongodb.net/?retryWrites=true&w=majority"
 
 
 class Banco:
@@ -35,8 +34,8 @@ class Banco:
     def verificar_credenciais(self, *args):
         banco_de_dados = self.cliente["ClyviDB"]
         colecao = banco_de_dados["usuarios"]
-        print(args)
-        print(*args)
+        #print(args)
+        #print(*args)
         email = args[0]
         senha = args[1]
         resultado = colecao.find_one({"e-mail": email, "senha": senha})
@@ -51,3 +50,10 @@ class Banco:
             print("Conectado ao MongoDB!")
         except Exception as e:
             print(e)
+
+    #Musicas
+
+    def tocar_musicas(self):
+        banco_de_dados = self.cliente["ClyviDB"]
+        colecao = banco_de_dados["musicas"]
+        return colecao.find()

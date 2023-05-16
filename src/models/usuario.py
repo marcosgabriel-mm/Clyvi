@@ -8,3 +8,5 @@ class Usuario:
 
     def __str__(self) -> str:
         return f"Nome: {self.nome}\tIdade: {self.__idade}\tData de Nascimento: {self.__data_de_nascimento}\n\nEmail: {self.__e_mail}\nSenha : ******\n\n"
+
+    
