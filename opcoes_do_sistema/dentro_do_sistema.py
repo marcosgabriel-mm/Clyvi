@@ -1,10 +1,15 @@
 from src.models.musica import Musica
 from manipulação_bd.conectar_db import Banco
 
-#pensa no spotify quando procura uma musica ou artista
-def procurar_artistas_ou_musicas():
 
-    banco = Banco()
+class Busca():
+    def __init__(self):
+        #pensa no spotify quando procura uma musica ou artista
+        banco = Banco()
+    def procurar_artistas(self, input):
+        pass
+    def procurar_musicas(self, input):
+        pass
     
 
 
@@ -16,10 +21,12 @@ def criar_playlist():
 def publicar_musica():
     pass
 
+busca = Busca()
 opcoes = {
     1: Musica.escutar_musicas,
     2: criar_playlist,
-    3: procurar_artistas_ou_musicas,
+    3: busca.procurar_artistas,
+    4: busca.procurar_musicas,
 }
 
 def opcoes_dentro_do_sistema():
