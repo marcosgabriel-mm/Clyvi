@@ -2,14 +2,25 @@ from src.models.musica import Musica
 from manipulação_bd.conectar_db import Banco
 
 
-class Busca():
-    def __init__(self):
-        #pensa no spotify quando procura uma musica ou artista
-        banco = Banco()
-    def procurar_artistas(self, input):
-        pass
-    def procurar_musicas(self, input):
-        pass
+class Busca(Banco):
+
+    def procurar_artistas(self):
+        banco_de_dados = self.cliente["ClyviDB"]
+        colecao = banco_de_dados["usuarios"]
+        query = {"nome": "Vex", "tipo_de_conta":"artista"}
+        resultados = colecao.find(query)
+        print("----------------------")
+        print("Artistas: ")
+        for artista in resultados:
+            print(artista)
+        print("----------------------")
+        print("Músicas: ")
+        colecao = banco_de_dados["musicas"]
+        query = {"nome": "Vex"}
+        resultados = colecao.find(query)
+        for musica in resultados:
+            print(f"{musica['nome']} - {musica['artista']}")
+
     
 
 
@@ -26,7 +37,6 @@ opcoes = {
     1: Musica.escutar_musicas,
     2: criar_playlist,
     3: busca.procurar_artistas,
-    4: busca.procurar_musicas,
 }
 
 def opcoes_dentro_do_sistema():
