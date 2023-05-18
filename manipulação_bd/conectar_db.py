@@ -39,10 +39,11 @@ class Banco:
         email = args[0]
         senha = args[1]
         resultado = colecao.find_one({"e-mail": email, "senha": senha})
+
         if resultado == None:
             return False
         else:
-            return True
+            return True, resultado
 
     def testar_conn(self):
         try:

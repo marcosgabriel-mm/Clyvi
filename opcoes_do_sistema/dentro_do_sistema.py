@@ -1,11 +1,10 @@
 from src.models.musica import Musica
 from manipulação_bd.conectar_db import Banco
+from src.models.usuario import Usuario
 
 #pensa no spotify quando procura uma musica ou artista
 def procurar_artistas_ou_musicas():
-
-    banco = Banco()
-    
+    pass    
 
 
 #cria uma playlist com o nome que o usuario colocar
@@ -20,6 +19,7 @@ opcoes = {
     1: Musica.escutar_musicas,
     2: criar_playlist,
     3: procurar_artistas_ou_musicas,
+    4: Usuario.informacoes_da_conta
 }
 
 def opcoes_dentro_do_sistema():

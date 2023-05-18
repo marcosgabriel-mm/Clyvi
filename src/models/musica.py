@@ -88,7 +88,12 @@ class Musica:
                             else:
                                 print("Essa é a primeira música d a playlist.")
                                 return
-                                      
+
+                        if keyboard.is_pressed("esc"):
+                            return False
+                            break   
+                        
+
                 print("\nAvançando para a próxima música.")
                 proxima_musica, index_atual = musica_obj.passar_musica(playlist, index_atual)
 
