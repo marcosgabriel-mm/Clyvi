@@ -1,5 +1,6 @@
 from src.models.musica import Musica
 from manipulação_bd.conectar_db import Banco
+from opcoes_do_sistema.entrando_no_sistema import opcoes_na_entrada_do_sistema
 
 
 class Busca(Banco):
@@ -37,6 +38,7 @@ opcoes = {
     1: Musica.escutar_musicas,
     2: criar_playlist,
     3: busca.procurar_artistas,
+    4: opcoes_na_entrada_do_sistema
 }
 
 def opcoes_dentro_do_sistema():
