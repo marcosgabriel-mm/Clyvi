@@ -60,10 +60,10 @@ def criar_conta():
         credenciais["tipo_de_conta"] = "usuario"
         banco.inserir_usuarios(credenciais)
 
-        Usuario(nome,data_de_nascimento,calcular_idade_a_partir_da_data_de_nascimento(data_de_nascimento),e_mail,senha)
-
+        usuario_logado = Usuario(nome,data_de_nascimento,calcular_idade_a_partir_da_data_de_nascimento(data_de_nascimento),e_mail,senha)
+        dados_usuario["usuario_logado"] = usuario_logado
     else:
-        print("Já existe uma conta com esse email. Considere fazer login")
+        print("\nJá existe uma conta com esse email. Considere fazer login")
 
 # opções que podem ser escolhidas de inicio
 opcoes = {1: login_no_sistema, 2: criar_conta}

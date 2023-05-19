@@ -28,9 +28,12 @@ class Usuario:
             )        
         
     
-    def criar_playlist(self, nome):
-        if nome not in self.playlists:
-            self.playlists[nome] = []
+    def criar_playlist():
+        nome = input("Nome da PlayList: ")
+
+        usuario = Usuario
+        if nome not in usuario.playlists:
+            usuario.playlists[nome] = []
 
     def adicionar_musica_na_playlist(self, nome_playlist, musica):
         if nome_playlist in self.playlists:
