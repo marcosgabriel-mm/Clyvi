@@ -1,72 +1,29 @@
-from manipulação_bd.conectar_db import Banco
 from src.dados_do_usuario import dados_usuario
+from datetime import datetime
 
 class Usuario:
-    def __init__(self, nome, data_de_nascimento, idade, e_mail, senha) -> None:
-        self.nome = nome
-        self.idade = idade
-        self.data_de_nascimento = data_de_nascimento
-        self.e_mail = e_mail
-        self.__senha = senha
-        self.playlists = {}
-
-    def __str__(self) -> str:
-        return f"Nome: {self.nome}\tIdade: {self.__idade}\tData de Nascimento: {self.__data_de_nascimento}\n\nEmail: {self.__e_mail}\nSenha : ******\n\n"
-
-    @staticmethod
-    def informacoes_da_conta():
-
-        if "usuario_logado" in dados_usuario:
-            usuario = dados_usuario["usuario_logado"]
-            #print(usuario)
-            return print(
-                
-                f"\nNome: {usuario.nome}\n"
-                f"Idade: {usuario.idade}\n"
-                f"E-mail: {usuario.e_mail}\n"
-                f"Data de nascimento: {usuario.data_de_nascimento}"
-            )        
+    def __init__(self) -> None:
         
+        self.nome = input("Digite seu nome: ")
+        self.data_de_nascimento = input("Digite sua data de nascimento (D/M/A): ")
+        self.e_mail = input("Digite seu E-Mail: ")
+        self.senha = input("Digite sua Senha: ")  
+
+        data_atual = datetime.now()
+        self.data_de_nascimento = datetime.strptime(self.data_de_nascimento, "%d/%m/%Y")
+        self.idade = data_atual.year - self.data_de_nascimento.year
+        if data_atual.month < self.data_de_nascimento.month or (data_atual.month == self.data_de_nascimento.month and data_atual.day < self.data_de_nascimento.day):
+            self.idade -= 1
+
+        self.credenciais = {
+        "nome": self.nome,
+        "data_de_nascimento": self.data_de_nascimento,
+        "e-mail": self.e_mail,
+        "senha": self.senha,
+        "idade": self.idade
+    }
+
+    def informacoes_da_conta(self):
+        return f"Nome: {self.nome}\tIdade: {self.idade}\tData de Nascimento: {self.data_de_nascimento}\n\nEmail: {self.e_mail}\n\n"     
     
-    def criar_playlist():
-        nome = input("Nome da PlayList: ")
-
-        usuario = Usuario
-        if nome not in usuario.playlists:
-            usuario.playlists[nome] = []
-
-    def adicionar_musica_na_playlist(self, nome_playlist, musica):
-        if nome_playlist in self.playlists:
-            self.playlists[nome_playlist].append(musica)
-        else:
-            print("Playlist não encontrada.")
-
-    def remover_musica_da_playlist(self, nome_playlist, musica):
-        if nome_playlist in self.playlists:
-            if musica in self.playlists[nome_playlist]:
-                self.playlists[nome_playlist].remove(musica)
-            else:
-                print("Música não encontrada na playlist.")
-        else:
-            print("Playlist não encontrada.")
-
-    def renomear_playlist(self, nome_antigo, nome_novo):
-        if nome_antigo in self.playlists:
-            self.playlists[nome_novo] = self.playlists.pop(nome_antigo)
-        else:
-            print("Playlist não encontrada.")
-
-    def excluir_playlist(self, nome):
-        if nome in self.playlists:
-            del self.playlists[nome]
-        else:
-            print("Playlist não encontrada.")
-
-    def exibir_playlists(self):
-        if self.playlists:
-            print("Playlists:")
-            for nome, musicas in self.playlists.items():
-                print(f"- {nome}: {len(musicas)} músicas")
-        else:
-            print("Nenhuma playlist encontrada.")
-        
+    

@@ -42,7 +42,7 @@ class Musica:
     def escutar_musicas():
         
         banco = Banco()
-        playlist = list(banco.tocar_musicas())
+        playlist = list(banco.buscar_musicas())
         index_atual = 0
 
         while True:
@@ -51,7 +51,7 @@ class Musica:
                 musica_obj = Musica(musica["nome"], musica["genero"], musica["duração"], musica["artista"])
                 musica_obj.tocando = True
 
-                print(f"\nTocando {musica_obj.nome_da_musica}")
+                print(f"\nTocando {musica_obj.nome_da_musica} - do Artista {musica_obj.artista_da_musica} ({musica_obj.genero_musical})")
                 for i in range(musica_obj.duracao_da_musica):
                     # código anterior
 

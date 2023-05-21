@@ -1,19 +1,8 @@
 from manipulação_bd.conectar_db import Banco
 from src.models.usuario import Usuario
 from src.models.artista import Artista
-from datetime import datetime
 from src.dados_do_usuario import dados_usuario
-
-def calcular_idade_a_partir_da_data_de_nascimento(data_de_nascimento):
-  
-    data_atual = datetime.now()
-    data_de_nascimento = datetime.strptime(data_de_nascimento, "%d/%m/%Y")
-    idade = data_atual.year - data_de_nascimento.year
-
-    if data_atual.month < data_de_nascimento.month or (data_atual.month == data_de_nascimento.month and data_atual.day < data_de_nascimento.day):
-        idade -= 1
-    
-    return idade
+from opcoes_do_sistema.dentro_do_sistema import opcoes_dentro_do_sistema
 
 def login_no_sistema():
 
@@ -29,11 +18,17 @@ def login_no_sistema():
         if conta_valida:
             print("\nBem Vindo de Volta\n")
             if documento_resgatado["tipo_de_conta"] == "usuario":
-                usuario_logado = Usuario(documento_resgatado["nome"],documento_resgatado["data_de_nascimento"],documento_resgatado["idade"], documento_resgatado["e-mail"], documento_resgatado["senha"])
-                dados_usuario["usuario_logado"] = usuario_logado
+                
+                opcoes_dentro_do_sistema()
+                
+                # usuario_logado = Usuario(documento_resgatado["nome"],documento_resgatado["data_de_nascimento"],documento_resgatado["idade"], documento_resgatado["e-mail"], documento_resgatado["senha"])
+                # dados_usuario["usuario_logado"] = usuario_logado
             else:
-                usuario_logado = Artista(documento_resgatado["nome"],documento_resgatado["data_de_nascimento"],documento_resgatado["idade"], documento_resgatado["e-mail"], documento_resgatado["senha"],documento_resgatado["quantidade_de_musicas"])
-                dados_usuario["usuario_logado"] = usuario_logado
+
+                pass
+
+                # usuario_logado = Artista(documento_resgatado["nome"],documento_resgatado["data_de_nascimento"],documento_resgatado["idade"], documento_resgatado["e-mail"], documento_resgatado["senha"],documento_resgatado["quantidade_de_musicas"])
+                # dados_usuario["usuario_logado"] = usuario_logado
                 #carregar lista de musicas
             return False
         else:
@@ -41,27 +36,20 @@ def login_no_sistema():
 
 
 def criar_conta():
-    nome = input("Digite seu nome: ")
-    data_de_nascimento = input("Digite sua data de nascimento (D/M/A): ")
-    e_mail = input("Digite seu E-Mail: ")  # verificar e-mail
-    senha = input("Digite sua Senha: ")  # Colocar Minimos de Caracteres
 
-    credenciais = {
-        "nome": nome,
-        "data_de_nascimento": data_de_nascimento,
-        "e-mail": e_mail,
-        "senha": senha,
-        "idade": calcular_idade_a_partir_da_data_de_nascimento(data_de_nascimento)
-    }
 
     banco = Banco()
+    usuario_novo = Usuario()
+
+    credenciais = usuario_novo.credenciais
 
     if (banco.verificar_user_existente(credenciais)) == True:
         credenciais["tipo_de_conta"] = "usuario"
         banco.inserir_usuarios(credenciais)
 
-        usuario_logado = Usuario(nome,data_de_nascimento,calcular_idade_a_partir_da_data_de_nascimento(data_de_nascimento),e_mail,senha)
-        dados_usuario["usuario_logado"] = usuario_logado
+        opcoes_dentro_do_sistema(usuario_novo)
+        # usuario_logado = Usuario(nome,data_de_nascimento,calcular_idade_a_partir_da_data_de_nascimento(data_de_nascimento),e_mail,senha)
+        # dados_usuario["usuario_logado"] = usuario_logado
     else:
         print("\nJá existe uma conta com esse email. Considere fazer login")
 

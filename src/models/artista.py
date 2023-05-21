@@ -10,7 +10,3 @@ class Artista(Usuario):
 
     def __str__(self) -> str:
         return super().__str__()
-
-    
-    def entrar_na_conta_artista():
-        pass

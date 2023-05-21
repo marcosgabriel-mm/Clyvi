@@ -54,7 +54,7 @@ class Banco:
 
     #Musicas
 
-    def tocar_musicas(self):
+    def buscar_musicas(self):
         banco_de_dados = self.cliente["ClyviDB"]
         colecao = banco_de_dados["musicas"]
         return colecao.find()
