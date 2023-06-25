@@ -12,15 +12,14 @@ def login_no_sistema():
         e_mail = input("Digite seu E-mail: ")
         senha = input("Digite sua Senha: ")
 
-        conta_valida, documento_resgatado = banco.verificar_credenciais(e_mail, senha)
+        documento_resgatado = banco.verificar_credenciais(e_mail, senha)
 
         # verifica se o login está certo
-        if conta_valida:
+        if documento_resgatado!=False:
             print("\nBem Vindo de Volta\n")
             if documento_resgatado["tipo_de_conta"] == "usuario":
-                
+
                 opcoes_dentro_do_sistema(documento_resgatado)
-                print("aqui", documento_resgatado['nome'])
                 
                 # usuario_logado = Usuario(documento_resgatado["nome"],documento_resgatado["data_de_nascimento"],documento_resgatado["idade"], documento_resgatado["e-mail"], documento_resgatado["senha"])
                 # dados_usuario["usuario_logado"] = usuario_logado
@@ -31,7 +30,6 @@ def login_no_sistema():
                 # usuario_logado = Artista(documento_resgatado["nome"],documento_resgatado["data_de_nascimento"],documento_resgatado["idade"], documento_resgatado["e-mail"], documento_resgatado["senha"],documento_resgatado["quantidade_de_musicas"])
                 # dados_usuario["usuario_logado"] = usuario_logado
                 #carregar lista de musicas
-            return False
         else:
             print("\nE-Mail ou Senha errado\nDigite Novamente\n\n")
 
