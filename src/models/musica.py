@@ -1,4 +1,6 @@
 from manipulação_bd.conectar_db import Banco
+from src.models.usuario import Usuario
+
 import time, keyboard
 
 class Musica:
@@ -39,7 +41,7 @@ class Musica:
             return playlist[index_atual], index_atual
 
 
-    def escutar_musicas():
+    def escutar_musicas(usuario:Usuario=None):
         
         banco = Banco()
         playlist = list(banco.buscar_musicas())
@@ -49,6 +51,7 @@ class Musica:
             try:
                 musica = playlist[index_atual]
                 musica_obj = Musica(musica["nome"], musica["genero"], musica["duração"], musica["artista"])
+                banco.adicionar_musica_historico(usuario, musica_obj)
                 musica_obj.tocando = True
 
                 print(f"\nTocando {musica_obj.nome_da_musica} - do Artista {musica_obj.artista_da_musica} ({musica_obj.genero_musical})")

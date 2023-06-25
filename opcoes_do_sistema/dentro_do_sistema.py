@@ -34,13 +34,16 @@ def publicar_musica():
     pass
 
 busca = Busca()
+def informacoes_conta(user):
+    print(f"Nome: {user['nome']}\tIdade: {user['idade']}\tData de Nascimento: {user['data_de_nascimento']}\n\nEmail: {user['e-mail']}\n\n")
+
 
 def opcoes_dentro_do_sistema(usuario=None):
     opcao = int(input("\n[1] - Escutar uma Musica\n[2] - Criar Playlist\n[3] - Buscar\n[4] - Conta\n\n=> "))
-    user = Usuario.informacoes_da_conta(usuario)
-
+    #user = Usuario.informacoes_da_conta(usuario)
+    user = informacoes_conta(usuario)
     opcoes = {
-        1: Musica.escutar_musicas,
+        1: Musica.escutar_musicas(usuario),
         2: publicar_musica,
         3: busca.procurar_artistas_musica,
         4: user,

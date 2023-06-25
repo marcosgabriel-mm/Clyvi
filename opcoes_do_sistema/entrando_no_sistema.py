@@ -19,7 +19,8 @@ def login_no_sistema():
             print("\nBem Vindo de Volta\n")
             if documento_resgatado["tipo_de_conta"] == "usuario":
                 
-                opcoes_dentro_do_sistema()
+                opcoes_dentro_do_sistema(documento_resgatado)
+                print("aqui", documento_resgatado['nome'])
                 
                 # usuario_logado = Usuario(documento_resgatado["nome"],documento_resgatado["data_de_nascimento"],documento_resgatado["idade"], documento_resgatado["e-mail"], documento_resgatado["senha"])
                 # dados_usuario["usuario_logado"] = usuario_logado

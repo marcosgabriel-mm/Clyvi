@@ -2,13 +2,13 @@ from src.dados_do_usuario import dados_usuario
 from datetime import datetime
 
 class Usuario:
-    def __init__(self) -> None:
+    def __init__(self):
         
         self.nome = input("Digite seu nome: ")
         self.data_de_nascimento = input("Digite sua data de nascimento (D/M/A): ")
         self.e_mail = input("Digite seu E-Mail: ")
         self.senha = input("Digite sua Senha: ")  
-
+        self.historico = []
         data_atual = datetime.now()
         self.data_de_nascimento = datetime.strptime(self.data_de_nascimento, "%d/%m/%Y")
         self.idade = data_atual.year - self.data_de_nascimento.year
@@ -20,7 +20,8 @@ class Usuario:
         "data_de_nascimento": self.data_de_nascimento,
         "e-mail": self.e_mail,
         "senha": self.senha,
-        "idade": self.idade
+        "idade": self.idade,
+        "historico":self.historico
     }
 
     def informacoes_da_conta(self):
