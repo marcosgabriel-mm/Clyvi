@@ -16,7 +16,7 @@ def login_no_sistema():
         # verifica se o login está certo
         if documento_resgatado!=False:
             print("\nBem Vindo de Volta\n")
-            if  documento_resgatado["tipo_de_conta"] == "usuario":
+            if  documento_resgatado["tipo_de_conta"] == ("usuario"):
 
                 opcoes_dentro_do_sistema(documento_resgatado)
                 
@@ -24,7 +24,8 @@ def login_no_sistema():
                 # dados_usuario["usuario_logado"] = usuario_logado
             else:
 
-                pass
+                opcoes_dentro_do_sistema(documento_resgatado)
+
 
                 # usuario_logado = Artista(documento_resgatado["nome"],documento_resgatado["data_de_nascimento"],documento_resgatado["idade"], documento_resgatado["e-mail"], documento_resgatado["senha"],documento_resgatado["quantidade_de_musicas"])
                 # dados_usuario["usuario_logado"] = usuario_logado

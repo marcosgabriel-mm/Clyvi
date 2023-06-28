@@ -4,18 +4,22 @@ from src.models.usuario import Usuario
 import time, keyboard
 
 class Musica:
-    def __init__(
-        self, nome_da_musica, genero_musical, duracao_da_musica, artista_da_musica
-    ) -> None:
+    def __init__(self, usuario):
+        nome_da_musica = str(input("Digite o nome da música: "))
+        genero_musical = str(input("Digite o gênero da música: " ))
+        duracao_da_musica = int(input("Digite a duração da música (em segundos): "))
+
         self.nome_da_musica = nome_da_musica
         self.genero_musical = genero_musical
         self.duracao_da_musica = duracao_da_musica
-        self.artista_da_musica = artista_da_musica
+        self.artista_da_musica = usuario
         self.tocando = False
 
     def __str__(self) -> str:
         return f"Nome da Musica: {self.nome_da_musica}\nGênero da Musica: {self.genero_musical}\nDuração da Musica: {self.duracao_da_musica}\nArtista: {self.artista_da_musica}"
 
+    def gerar_dicionario(self):
+        return dict({"nome": self.nome_da_musica, "duração": self.duracao_da_musica, "genero": self.genero_musical, "artista": self.artista_da_musica['nome']})
     def pausar_musica(self):
         self.tocando = False
 

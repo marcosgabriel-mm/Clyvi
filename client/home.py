@@ -76,10 +76,21 @@ class Busca(Banco):
         for musica in resultados:
             print(f"{musica['nome']} - {musica['artista']}")
 
+    #usuario publica e sua conta passa de usuario para artista,
+    def publicar_musica(self, usuario):
+        banco_de_dados = self.cliente["ClyviDB"]
+        colecao = banco_de_dados["usuarios"]
+        colecao.update_one({'_id': usuario['_id']}, {'$set': {'tipo_de_conta': 'artista'}})
 
-#usuario publica e sua conta passa de usuario para artista,
-def publicar_musica():
-    pass
+        musica = Musica(usuario)
+        musica_dict = musica.gerar_dicionario()
+        
+        musicas_colecao = banco_de_dados['musicas']
+        musicas_colecao.insert_one(musica_dict)
+        
+        
+
+
 
 busca = Busca()
 
@@ -92,11 +103,11 @@ def informacoes_conta(user):
 
 def opcoes_dentro_do_sistema(usuario=None):
     while True:
-        opcao = int(input("\n[1] - Escutar uma Musica\n[2] - Criar Playlist\n[3] - Buscar\n[4] - Conta\n[5] - Artista Cadastrados\n=> "))
+        opcao = int(input("\n[1] - Escutar uma Musica\n[2] - Publicar uma música\n[3] - Buscar\n[4] - Conta\n[5] - Artista Cadastrados\n=> "))
         #user = Usuario.informacoes_da_conta(usuario)
         opcoes = {
             #1: Musica.escutar_musicas(usuario),
-            2: publicar_musica,
+            2: lambda: busca.publicar_musica(usuario),
             3: busca.procurar_artistas_musica,
             4: lambda: informacoes_conta(usuario),
             5: busca.listar_artistas_cadastrados
