@@ -96,7 +96,8 @@ class Busca(Banco):
         
         musicas_colecao = banco_de_dados['musicas']
         musicas_colecao.insert_one(musica_dict)
-        
+
+#Por meio do Singleton, certifico que há apenas uma instância       
 busca = Busca.instance()
 
 def informacoes_conta(user):
@@ -111,7 +112,7 @@ def opcoes_dentro_do_sistema(usuario=None):
         opcao = int(input("\n[1] - Escutar uma Musica\n[2] - Publicar uma música\n[3] - Buscar\n[4] - Conta\n[5] - Artista Cadastrados\n=> "))
         #user = Usuario.informacoes_da_conta(usuario)
         opcoes = {
-            #1: Musica.escutar_musicas(usuario),
+            1: lambda: Musica.escutar_musicas(usuario),
             2: lambda: busca.publicar_musica(usuario),
             3: busca.procurar_artistas_musica,
             4: lambda: informacoes_conta(usuario),

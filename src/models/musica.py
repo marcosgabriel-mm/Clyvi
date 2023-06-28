@@ -4,10 +4,11 @@ from src.models.usuario import Usuario
 import time, keyboard
 
 class Musica:
-    def __init__(self, usuario):
-        nome_da_musica = str(input("Digite o nome da música: "))
-        genero_musical = str(input("Digite o gênero da música: " ))
-        duracao_da_musica = int(input("Digite a duração da música (em segundos): "))
+    def __init__(self, usuario, nome_da_musica=None, genero_musical=None, duracao_da_musica=None):
+        if(nome_da_musica==None):
+            nome_da_musica = str(input("Digite o nome da música: "))
+            genero_musical = str(input("Digite o gênero da música: " ))
+            duracao_da_musica = int(input("Digite a duração da música (em segundos): "))
 
         self.nome_da_musica = nome_da_musica
         self.genero_musical = genero_musical
@@ -54,7 +55,8 @@ class Musica:
         while True:
             try:
                 musica = playlist[index_atual]
-                musica_obj = Musica(musica["nome"], musica["genero"], musica["duração"], musica["artista"])
+                musica_obj = Musica(musica["artista"], musica["nome"], musica["genero"], musica["duração"])
+                
                 banco.adicionar_musica_historico(usuario, musica_obj)
                 musica_obj.tocando = True
 
