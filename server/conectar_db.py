@@ -4,6 +4,15 @@ from pymongo.server_api import ServerApi
 
 
 class Banco:
+
+    #Singleton Design Pattern
+    _instance = None
+    @classmethod
+    def instance(cls):
+        if cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
+
     def __init__(self):
         self.cliente = MongoClient(
             "mongodb+srv://marcosgabriel:mgmm4103@cluster0.7mnfxzs.mongodb.net/?retryWrites=true&w=majority",
