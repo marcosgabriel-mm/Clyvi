@@ -45,13 +45,21 @@ class Aggregate(IAggregate):
         print("Esse método foi chamado")
 
 class Busca(Banco):
+    #Singleton Design Pattern
+    _instance = None
+    @classmethod
+    def instance(cls):
+        if cls._instance is None:
+            cls._instance = cls()
+        return cls._instance
+    
     def listar_artistas_cadastrados(self):
         banco_de_dados = self.cliente["ClyviDB"]
         colecao = banco_de_dados["usuarios"]
-        file = list(colecao.find())
+        file = list(colecao.find({'tipo_de_conta': "artista"}))
+        
         iteravel = Iterable(file)
-
-        while iteravel.has_next() and iteravel.next()['tipo_de_conta']=='artista':
+        while iteravel.has_next():
             print(iteravel.next()['nome'])
 
     def procurar_artistas_musica(self):
@@ -80,6 +88,7 @@ class Busca(Banco):
     def publicar_musica(self, usuario):
         banco_de_dados = self.cliente["ClyviDB"]
         colecao = banco_de_dados["usuarios"]
+
         colecao.update_one({'_id': usuario['_id']}, {'$set': {'tipo_de_conta': 'artista'}})
 
         musica = Musica(usuario)
@@ -88,11 +97,7 @@ class Busca(Banco):
         musicas_colecao = banco_de_dados['musicas']
         musicas_colecao.insert_one(musica_dict)
         
-        
-
-
-
-busca = Busca()
+busca = Busca.instance()
 
 def informacoes_conta(user):
     try:

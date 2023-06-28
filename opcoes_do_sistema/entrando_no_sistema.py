@@ -44,7 +44,9 @@ def criar_conta():
 
     if (banco.verificar_user_existente(credenciais)) == True:
         credenciais["tipo_de_conta"] = "usuario"
-        banco.inserir_usuarios(credenciais)
+        banco.inserir_usuarios(credenciais)        
+        banco.busc
+
 
         opcoes_dentro_do_sistema(usuario_novo)
         # usuario_logado = Usuario(nome,data_de_nascimento,calcular_idade_a_partir_da_data_de_nascimento(data_de_nascimento),e_mail,senha)

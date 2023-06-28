@@ -11,6 +11,11 @@ class Banco:
         )
 
     # Essa função provavelmente vai servir de muita coisa, já que retorna todos os usuários
+    def busca_usuario(self, credenciais):
+        banco_de_dados = self.cliente['ClivyDB']
+        colecao = banco_de_dados['usuarios']
+        return colecao.find_one(credenciais)
+    
     def usuarios(self):
         banco_de_dados = self.cliente["ClyviDB"]
         colecao = banco_de_dados["usuarios"]
@@ -20,6 +25,7 @@ class Banco:
         banco_de_dados = self.cliente["ClyviDB"]
         colecao = banco_de_dados["usuarios"]
         colecao.insert_one(*args)
+        return colecao.find_one(*args)
 
     def verificar_user_existente(self, *args):
         banco_de_dados = self.cliente["ClyviDB"]
