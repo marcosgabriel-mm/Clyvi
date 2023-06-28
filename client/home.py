@@ -36,13 +36,13 @@ class IAggregate(metaclass=ABCMeta):
     @staticmethod
     @abstractmethod
     def method():
-        "a method to implement"
+        "Método a ser implementado"
 
 class Aggregate(IAggregate):
     "A concrete object"
     @staticmethod
     def method():
-        print("This method has been invoked")
+        print("Esse método foi chamado")
 
 class Busca(Banco):
     def listar_artistas_cadastrados(self):
