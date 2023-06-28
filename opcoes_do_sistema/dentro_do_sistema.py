@@ -46,7 +46,7 @@ def opcoes_dentro_do_sistema(usuario=None):
     opcao = int(input("\n[1] - Escutar uma Musica\n[2] - Criar Playlist\n[3] - Buscar\n[4] - Conta\n\n=> "))
     #user = Usuario.informacoes_da_conta(usuario)
     opcoes = {
-        #1: Musica.escutar_musicas(usuario),
+        1: Musica.escutar_musicas(usuario),
         2: publicar_musica,
         3: busca.procurar_artistas_musica,
         4: lambda: informacoes_conta(usuario),

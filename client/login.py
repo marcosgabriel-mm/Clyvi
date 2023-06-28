@@ -16,7 +16,7 @@ def login_no_sistema():
         # verifica se o login está certo
         if documento_resgatado!=False:
             print("\nBem Vindo de Volta\n")
-            if documento_resgatado["tipo_de_conta"] == "usuario":
+            if  documento_resgatado["tipo_de_conta"] == "usuario":
 
                 opcoes_dentro_do_sistema(documento_resgatado)
                 

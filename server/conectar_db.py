@@ -43,7 +43,7 @@ class Banco:
         if resultado == None:
             return False
         else:
-            return True, resultado
+            return resultado
 
     def testar_conn(self):
         try:

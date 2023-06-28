@@ -1,11 +1,62 @@
 from server.conectar_db import Banco
+from src.models.musica import Musica
+from abc import ABCMeta, abstractmethod
+
+class IIterator(metaclass=ABCMeta):
+    "An Iterator Interface"
+    @staticmethod
+    @abstractmethod
+    def has_next():
+        "Retorna um valor booleano se é ou nao o fim da coleção"
+
+    @staticmethod
+    @abstractmethod
+    def next():
+        "Retorna um objeto na coleçãp"
+
+class Iterable(IIterator):
+    "The concrete iterator (iterable)"
+
+    def __init__(self, aggregates):
+        self.index = 0
+        self.aggregates = aggregates
+
+    def next(self):
+        if self.index < len(self.aggregates):
+            aggregate = self.aggregates[self.index]
+            self.index += 1
+            return aggregate
+        raise Exception("AtEndOfIteratorException", "At End of Iterator")
+
+    def has_next(self):
+        return self.index < len(self.aggregates)
+
+class IAggregate(metaclass=ABCMeta):
+    "An interface that the aggregates should implement"
+    @staticmethod
+    @abstractmethod
+    def method():
+        "a method to implement"
+
+class Aggregate(IAggregate):
+    "A concrete object"
+    @staticmethod
+    def method():
+        print("This method has been invoked")
 
 class Busca(Banco):
+    def listar_artistas_cadastrados(self):
+        banco_de_dados = self.cliente["ClyviDB"]
+        colecao = banco_de_dados["usuarios"]
+        file = list(colecao.find())
+        iteravel = Iterable(file)
+
+        while iteravel.has_next() and iteravel.next()['tipo_de_conta']=='artista':
+            print(iteravel.next()['nome'])
 
     def procurar_artistas_musica(self):
         banco_de_dados = self.cliente["ClyviDB"]
         colecao = banco_de_dados["usuarios"]
-        
         query = {"nome": "Vex", "tipo_de_conta":"artista"}
         resultados = colecao.find(query)
         
@@ -40,15 +91,17 @@ def informacoes_conta(user):
 
 
 def opcoes_dentro_do_sistema(usuario=None):
-    opcao = int(input("\n[1] - Escutar uma Musica\n[2] - Criar Playlist\n[3] - Buscar\n[4] - Conta\n\n=> "))
-    #user = Usuario.informacoes_da_conta(usuario)
-    opcoes = {
-        #1: Musica.escutar_musicas(usuario),
-        2: publicar_musica,
-        3: busca.procurar_artistas_musica,
-        4: lambda: informacoes_conta(usuario),
+    while True:
+        opcao = int(input("\n[1] - Escutar uma Musica\n[2] - Criar Playlist\n[3] - Buscar\n[4] - Conta\n[5] - Artista Cadastrados\n=> "))
+        #user = Usuario.informacoes_da_conta(usuario)
+        opcoes = {
+            #1: Musica.escutar_musicas(usuario),
+            2: publicar_musica,
+            3: busca.procurar_artistas_musica,
+            4: lambda: informacoes_conta(usuario),
+            5: busca.listar_artistas_cadastrados
 
-    }
-    
-    acao = opcoes.get(opcao, lambda: print("Opção Invalida\n"))
-    acao()
+        }
+        
+        acao = opcoes.get(opcao, lambda: print("Opção Invalida\n"))
+        acao()
