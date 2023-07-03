@@ -3,7 +3,7 @@ from src.models.musica import Musica
 from abc import ABCMeta, abstractmethod
 
 class IIterator(metaclass=ABCMeta):
-    "An Iterator Interface"
+    "Interface do Iterator"
     @staticmethod
     @abstractmethod
     def has_next():
@@ -15,7 +15,7 @@ class IIterator(metaclass=ABCMeta):
         "Retorna um objeto na coleçãp"
 
 class Iterable(IIterator):
-    "The concrete iterator (iterable)"
+    "O Iterator concreto"
 
     def __init__(self, aggregates):
         self.index = 0
@@ -32,17 +32,17 @@ class Iterable(IIterator):
         return self.index < len(self.aggregates)
 
 class IAggregate(metaclass=ABCMeta):
-    "An interface that the aggregates should implement"
+    "Interface do objeto"
     @staticmethod
     @abstractmethod
     def method():
-        "Método a ser implementado"
+        "Busca"
 
 class Aggregate(IAggregate):
-    "A concrete object"
+    "Objeto Concreto"
     @staticmethod
     def method():
-        print("Esse método foi chamado")
+        print("Listar Artistas")
 
 class Busca(Banco):
     #Singleton Design Pattern
