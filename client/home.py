@@ -1,5 +1,5 @@
 from server.conectar_db import Banco
-from src.models.musica import Musica
+from server.models.musica import Musica
 from abc import ABCMeta, abstractmethod
 
 class IIterator(metaclass=ABCMeta):
@@ -109,15 +109,15 @@ def informacoes_conta(user):
 
 def opcoes_dentro_do_sistema(usuario=None):
     while True:
-        opcao = int(input("\n[1] - Escutar uma Musica\n[2] - Publicar uma música\n[3] - Buscar\n[4] - Conta\n[5] - Artista Cadastrados\n=> "))
+        opcao = int(input("\n[1] - Escutar uma Musica\n[2] - Publicar uma música\n[3] - Buscar\n[4] - Conta\n[5] - Artista Cadastrados\n[6] - Fechar\n=> "))
         #user = Usuario.informacoes_da_conta(usuario)
         opcoes = {
             1: lambda: Musica.escutar_musicas(usuario),
             2: lambda: busca.publicar_musica(usuario),
             3: busca.procurar_artistas_musica,
             4: lambda: informacoes_conta(usuario),
-            5: busca.listar_artistas_cadastrados
-
+            5: busca.listar_artistas_cadastrados,
+            6: exit
         }
         
         acao = opcoes.get(opcao, lambda: print("Opção Invalida\n"))

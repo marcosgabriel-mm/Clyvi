@@ -1,6 +1,5 @@
 from server.conectar_db import Banco
 from server.models.usuario import Usuario
-from server.models.artista import Artista
 from client.home import opcoes_dentro_do_sistema
 
 def login_no_sistema():
@@ -54,11 +53,11 @@ def criar_conta():
         print("\nJá existe uma conta com esse email. Considere fazer login")
 
 # opções que podem ser escolhidas de inicio
-opcoes = {1: login_no_sistema, 2: criar_conta}
+opcoes = {1: login_no_sistema, 2: criar_conta, 3: exit}
 
 
 def opcoes_na_entrada_do_sistema():
-    opcao = int(input("\tBem Vindo\t\n[1] - Entrar\n[2] - Criar Conta\n\n=> "))
+    opcao = int(input("\tBem Vindo\t\n[1] - Entrar\n[2] - Criar Conta\n[3] - Fechar\n=> "))
 
     acao = opcoes.get(opcao, lambda: print("Opção Invalida\n"))
     acao()
