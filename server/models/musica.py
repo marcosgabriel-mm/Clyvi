@@ -1,5 +1,5 @@
 from server.conectar_db import Banco
-from src.models.usuario import Usuario
+from server.models.usuario import Usuario
 
 import time, keyboard
 
@@ -56,46 +56,43 @@ class Musica:
 
                 print(f"\nTocando {musica_obj.nome_da_musica} - do Artista {musica_obj.artista_da_musica} ({musica_obj.genero_musical})")
                 for i in range(musica_obj.duracao_da_musica):
-                    # código anterior
 
-                        if not musica_obj.tocando:
-                            keyboard.wait(' ')
-                            print("\nRetomando música.")
-                            musica_obj.tocando = True 
+                    if not musica_obj.tocando:
+                        keyboard.wait(' ')
+                        print("\nRetomando música.")
+                        musica_obj.tocando = True 
 
+                    else:
+                        tempo_decorrido = f"{i}s".rjust(3, '0')
+                        print(f"\rTempo decorrido: {tempo_decorrido}", end='', flush=True)
+                        time.sleep(1)
+
+                        if keyboard.is_pressed("space"):
+                            print("\nMúsica pausada. Pressione 'espaço' para retomar.")
+                            musica_obj.tocando = False
+
+                    if keyboard.is_pressed("right"):
+                        print("\nAvançando para a próxima música.")
+                        musica_obj.pausar_musica()
+                        proxima_musica, index_atual = musica_obj.passar_musica(playlist, index_atual)
+                        if proxima_musica is not None:
+                            break
                         else:
-                            tempo_decorrido = f"{i}s".rjust(3, '0')
-                            print(f"\rTempo decorrido: {tempo_decorrido}", end='', flush=True)
-                            time.sleep(1)
-
-                            if keyboard.is_pressed("space"):
-                                print("\nMúsica pausada. Pressione 'espaço' para retomar.")
-                                musica_obj.tocando = False
-
-                        if keyboard.is_pressed("right"):
-                            print("\nAvançando para a próxima música.")
-                            musica_obj.pausar_musica()
-                            proxima_musica, index_atual = musica_obj.passar_musica(playlist, index_atual)
-                            if proxima_musica is not None:
-                                break
-                            else:
-                                print("Não há mais músicas na playlist.")
-                                return
-                            
-                        if keyboard.is_pressed("left"):         
-                            print("\nVoltando para a música anterior.")
-                            musica_obj.pausar_musica()
-                            musica_anterior, index_atual = musica_obj.voltar_musica(playlist, index_atual)
-                            if musica_anterior is not None:
-                                break
-                            else:
-                                print("Essa é a primeira música d a playlist.")
-                                return
-
-                        if keyboard.is_pressed("esc"):
-                            return False
-                            break   
+                            print("Não há mais músicas na playlist.")
+                            return
                         
+                    if keyboard.is_pressed("left"):         
+                        print("\nVoltando para a música anterior.")
+                        musica_obj.pausar_musica()
+                        musica_anterior, index_atual = musica_obj.voltar_musica(playlist, index_atual)
+                        if musica_anterior is not None:
+                            break
+                        else:
+                            print("Essa é a primeira música da playlist.")
+                            return
+
+                    if keyboard.is_pressed("esc"):
+                        return False
 
                 print("\nAvançando para a próxima música.")
                 proxima_musica, index_atual = musica_obj.passar_musica(playlist, index_atual)

@@ -1,4 +1,3 @@
-from src.dados_do_usuario import dados_usuario
 from datetime import datetime
 
 class Usuario:
