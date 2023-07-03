@@ -45,6 +45,7 @@ def criar_conta():
         credenciais["tipo_de_conta"] = "usuario"
         documento = banco.inserir_usuarios(credenciais)
         
+        print ("\nConta criada com sucesso")
         opcoes_dentro_do_sistema(documento)
         
         # usuario_logado = Usuario(nome,data_de_nascimento,calcular_idade_a_partir_da_data_de_nascimento(data_de_nascimento),e_mail,senha)
