@@ -1,14 +1,14 @@
 from abc import ABCMeta, abstractmethod
 
 class IAggregate(metaclass=ABCMeta):
-    "An interface that the aggregates should implement"
+    "Interface do objeto"
     @staticmethod
     @abstractmethod
     def method():
-        "Método a ser implementado"
+        "Busca"
 
 class Aggregate(IAggregate):
-    "A concrete object"
+    "Objeto Concreto"
     @staticmethod
     def method():
-        print("Esse método foi chamado")
+        print("Listar Artistas")

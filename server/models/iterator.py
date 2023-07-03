@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 
 class IIterator(metaclass=ABCMeta):
-    "An Iterator Interface"
+    "Interface do Iterator"
     @staticmethod
     @abstractmethod
     def has_next():
@@ -13,7 +13,7 @@ class IIterator(metaclass=ABCMeta):
         "Retorna um objeto na coleçãp"
 
 class Iterable(IIterator):
-    "The concrete iterator (iterable)"
+    "O Iterator concreto"
 
     def __init__(self, aggregates):
         self.index = 0
